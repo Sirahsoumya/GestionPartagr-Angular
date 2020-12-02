@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+//---------------------
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ProjetAng';
+  title: string;
+
+  constructor() {
+    this.title = 'Gestion partage des Biens et des Services';
+  }
 }

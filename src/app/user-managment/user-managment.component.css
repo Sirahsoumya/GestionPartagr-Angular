@@ -1,0 +1,16 @@
+body {
+  padding : 10px ;
+
+}
+
+#exTab1 .tab-content {
+  color : black;
+  background-color: white;
+  padding : 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}

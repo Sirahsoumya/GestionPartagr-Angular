@@ -1,0 +1,71 @@
+<div style="background-color: #c72c21">
+  <h2 class="text-center p-4 text-white">Inscrition</h2>
+</div>
+<div class="card my-5" style="margin-top: -30px">
+  <div class="card-body">
+
+    <form (ngSubmit)="onSubmit()" class="was-validated" style="margin-top: -10px">
+      <div class="mb-3">
+        <label for="nom">Nom</label>
+        <input type="text" [(ngModel)]="user.nom"
+               class="form-control is-invalid"
+               id="nom"
+               name="nom"
+               placeholder="Enter votre nom" required>
+
+      </div>
+      <div class="mb-3">
+        <label for="prenom">Prenom</label>
+        <input type="text" [(ngModel)]="user.prenom"
+               class="form-control is-invalid"
+               id="prenom"
+               name="prenom"
+               placeholder="Prenom"
+               required #name="ngModel">
+
+      </div>
+      <div class="mb-3">
+        <label for="tel">Tel</label>
+        <input type="text" [(ngModel)]="user.tel"
+               class="form-control is-invalid"
+               id="tel"
+               name="tel"
+               placeholder="Numero de telephone"
+               required #name="ngModel">
+
+      </div>
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="text" [(ngModel)]="user.email"
+               class="form-control is-invalid"
+               id="email"
+               name="email"
+               placeholder="Email "
+               required #email="ngModel">
+      </div>
+      <div class="mb-3">
+        <label for="password">Mot de passe</label>
+        <input type="text" [(ngModel)]="user.password"
+               class="form-control is-invalid"
+               id="password"
+               name="password"
+               placeholder="Password"
+               required #name="ngModel">
+      </div>
+      <div class="mb-3">
+        <label>Quartier</label>
+        <select class="custom-select is-invalid" type="number" name="quartier" [(ngModel)]="user.quartier.id_quartier"
+                required>
+          <option selected>Choisir...</option>
+          <option *ngFor="let quartier of quartiers" [ngValue]="quartier.id_quartier">{{quartier.adresse}}</option>
+        </select>
+      </div>
+
+      <div align="center">
+        <button type="submit"
+                class="btn btn-primary p-3 " style="width: 200px; font-size: medium">Ajouter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<br/>
+<a class="btn btn-outline-info" routerLink="/home" role="button"><--Retour à la page d'accueil</a>
+<div align="center">
+  <br/>
+  <br/>
+  <h2> Déposer une plainte </h2></div>
+
+
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label><h5>Demandeur : </h5></label>
+          <select type="number" name="user1" [(ngModel)]="plainte.user1.id_user" class="form-control">
+            <option *ngFor="let user of users" [ngValue]="user.id_user">{{user.nom}}</option>
+          </select>
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="note"><h5>La note</h5></label>
+          <input [(ngModel)]="plainte.user1.note"
+                 class="form-control"
+                 id="note"
+                 name="note"
+                 placeholder="donner une note"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateDemande"><h5>date de la plainte</h5></label>
+        <input type="date" [(ngModel)]="plainte.date_plainte"
+               class="form-control"
+               id="dateDemande"
+               name="dateDemande"
+               placeholder="Enter de la plainte">
+      </div>
+
+      <div>
+        <label for="description"><h5>Description</h5></label>
+        <textarea [(ngModel)]="plainte.desc_plainte"
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  placeholder="Ecrire le contenu de votre plainte"></textarea>
+      </div>
+      <br/>
+      <div align="center">
+        <button type="submit" style="width: 250px" class="btn btn-info btn-lg p-3">Deposer</button>
+
+      </div>
+    </form>
+  </div>
+</div>
+

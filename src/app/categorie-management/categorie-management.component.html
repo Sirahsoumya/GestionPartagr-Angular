@@ -1,0 +1,94 @@
+<a class="btn btn-outline-info" routerLink="/admin" role="button"><--Retour à la page d'accueil</a>
+<br/>
+
+<div align="center">
+  <h1 class="text-center p-4 " style="color: #c72c21">Ajouter une categorie </h1>
+</div>
+
+<br/>
+<div align="center">
+  <label class="form-check-inline">
+    <label class="form-check-inline" style="font-size:25px"><input type="radio" name="mode" [value]="false"
+                                                                   [(ngModel)]="click" class="form-check-input"><strong>Bien </strong>
+
+    </label>
+  </label>
+  <label class="form-check-inline">
+    <label class="form-check-inline" style="font-size:25px"> <input type="radio" name="mode" [value]="true"
+                                                                    [(ngModel)]="click"
+                                                                    class="form-check-input"><strong>Service </strong>
+
+    </label>
+  </label>
+</div>
+
+<!--<div align="center">
+<label class="form-check-inline">
+
+  <label>Bien: <input class="form-check-input" type="radio" name="mode"  [value]="false" [(ngModel)]="click"></label>
+</label>
+<label class="form-check-inline">
+
+  <label>Sercice: <input class="form-check-input" type="radio" name="mode"   [value]="true" [(ngModel)]="click"></label>
+</label>
+</div>-->
+<br>
+
+<div *ngIf="click">
+
+  <blockquote class="blockquote">
+    <p class="mb-0"><strong>Categorie Service :</strong></p>
+  </blockquote>
+
+  <div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom">Description : </label>
+
+
+          <input type="text" [(ngModel)]="categorie.desc_catServ"
+                 class="form-control"
+                 id="nom"
+                 name="nom"
+                 placeholder="Entrer la description de la categorie">
+
+        </div>
+        <div align="center">
+          <button type="submit"
+                  style="width: 250px" class="btn btn-info btn-lg p-3">Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!click">
+  <blockquote class="blockquote">
+    <p class="mb-0"><strong>Categorie Bien :</strong></p>
+  </blockquote>
+
+  <div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmitBien()">
+        <div class="form-group">
+          <label for="nom">Description : </label>
+          <input type="descBien" [(ngModel)]="categorieBien.desc_catBien"
+                 class="form-control"
+                 id="descBien"
+                 name="descBien"
+                 placeholder="Entrer la description de la categorie ">
+
+        </div>
+        <div align="center">
+          <button type="submit"
+                  style="width: 250px" class="btn btn-info btn-lg p-3">Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

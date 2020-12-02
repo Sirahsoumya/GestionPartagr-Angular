@@ -1,0 +1,145 @@
+<app-user-managment></app-user-managment>
+<br/>
+<div align="center">
+  <label class="form-check-inline">
+    <label class="form-check-inline" style="font-size:25px"><input class="form-check-input"
+                                                                   type="radio" name="mode"
+                                                                   (click)="setCategorie('Bien')"
+                                                                   [value]="true"
+                                                                   [(ngModel)]="mode"><strong> Bien </strong></label>
+  </label>
+  <label class="form-check-inline">
+    <label class="form-check-inline" style="font-size:25px"> <input class="form-check-input"
+                                                                    type="radio" name="mode"
+                                                                    (click)="setCategorie('Service')"
+                                                                    [value]="false"
+                                                                    [(ngModel)]="mode"><strong>
+      Service </strong></label>
+  </label>
+</div>
+<div class="form-group">
+  <div *ngIf="mode">
+    <label><h4><strong>Selectionner Categorie </strong></h4></label>
+    <select type="number" [(ngModel)]="selectedCategorieBien" (change)="getSelectedBiens(selectedCategorieBien)"
+            class="form-control">
+      <option *ngFor="let categorieBien of categorieBiens"
+              [ngValue]="categorieBien.id_catBien">{{categorieBien.desc_catBien}}</option>
+    </select>
+    <div class="row">
+      <div *ngFor=" let bien of biens">
+        <label>
+          <input class="bienClass" type="radio" name="imageBien" value="{{bien.id_bien}}" [(ngModel)]="selectedBien"
+                 (change)="getSelectedBien(selectedBien)" checked>
+          <br/>
+          <div class="col-md-6">
+            <div class="card" style="width: 18rem;padding: 20px">
+              <img src="{{bien.image}}" width="100%" height="100px" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{bien.type_bien}}</h5>
+                <p class="card-text blink_me">Attention ce bien est disponible seulement entre <span
+                  class="text-info">[{{bien.date_debut}}</span> - <span class="text-info">{{bien.date_fin}}]</span></p>
+              </div>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+    <br>
+    <div *ngIf="selectedBien!=-1">
+      <div class="card my-5">
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="dateDemande">date de demande</label>
+                <input class="form-control" type="date" [(ngModel)]="demandeBien.date_demande"
+                       id="dateDemande"
+                       name="dateDemande"
+                       placeholder="Enter de la demande">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="dateRetour">date de retour</label>
+                <input class="form-control" type="date" [(ngModel)]="demandeBien.date_retour"
+                       id="dateRetour"
+                       name="dateRetour"
+                       placeholder="Enter du Rtour">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="commentaire">Commentaire</label>
+              <textarea [(ngModel)]="demandeBien.commentaire"
+                        class="form-control"
+                        id="commentaire"
+                        name="commentaire"
+                        placeholder="Enter votre commentaire"></textarea>
+            </div>
+            <button type="submit"
+                    style="width: 250px;position: center" class="btn btn-info btn-lg p-1">Confirmer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!mode">
+  <label><h4><strong>Selectionner Categorie</strong></h4></label>
+  <select type="number" [(ngModel)]="selectedCategorie" (change)="getSelectedServices(selectedCategorie)"
+          class="form-control">
+    <option *ngFor="let categorie of categories" [ngValue]="categorie.id_catServ">{{categorie.desc_catServ}}</option>
+  </select>
+  <br/>
+  <ul ul style="list-style:none" class="donate-now">
+    <div *ngFor=" let service of services">
+      <li style="font-size:medium;padding:25px;">
+        <input class="form-check-input" style="font-size:25px" type="radio" id="{{service.id_serv}}" name="imageService"
+               value="{{service.id_serv}}" [(ngModel)]="selectedService" (change)="getSelectedService(selectedService)"
+               checked>
+        <label for="{{service.id_serv}}" style="font-size:25px">{{service.type_service}}</label>
+      </li>
+      <br/>
+      <div class="blink_me" align="center" style="font-size:20px">Attention ce service est disponible seulement entre
+        [{{service.date_debut|date:'dd/MM/yyyy'}} - {{service.date_fin|date:'dd/MM/yyyy'}}]
+      </div>
+    </div>
+  </ul>
+  <div *ngIf="selectedService!=-1">
+    <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmitService()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="dateDemandeService">date de demande</label>
+              <input type="date" [(ngModel)]="demandeService.date_demande"
+                     class="form-control"
+                     id="dateDemandeService"
+                     name="dateDemandeService"
+                     placeholder="Enter la date de la demande">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="dateRetourService">date de retour</label>
+              <input type="date" [(ngModel)]="demandeService.date_retour"
+                     class="form-control"
+                     id="dateRetourService"
+                     name="dateRetourService"
+                     placeholder="Enter du Rtour">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="commentaireService">Commentaire</label>
+            <textarea [(ngModel)]="demandeService.commentaire"
+                      class="form-control"
+                      id="commentaireService"
+                      name="commentaireService"
+                      placeholder="Enter votre commentaire"></textarea>
+          </div>
+          <div align="center">
+            <button type="submit"
+                    style="width: 250px;position: center" class="btn btn-info btn-lg p-1">Confirmer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
